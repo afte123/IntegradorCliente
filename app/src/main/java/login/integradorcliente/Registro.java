@@ -34,7 +34,7 @@ EditText creaNombre, creaContra;
 
 
     public  void botonCrear(View v){
-        mensaje = new Mensaje("sss","sssssss");
+        mensaje = new Mensaje(creaNombre.toString(),":",creaContra.toString());
         new Tarea().execute(mensaje);
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);

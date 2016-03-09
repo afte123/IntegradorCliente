@@ -3,11 +3,12 @@ import java.io.Serializable;
 
 
 public class Mensaje implements Serializable {
-	String nombre, contra;
+	String nombre, contra, separar;
 
 
-	public Mensaje (String nombre, String contra){
-	this.nombre=nombre;
+	public Mensaje (String nombre,String separar, String contra){
+		this.separar=separar;
+		this.nombre=nombre;
 		this.contra=contra;
 	}
 
