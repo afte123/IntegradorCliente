@@ -34,14 +34,10 @@ EditText creaNombre, creaContra;
 
 
     public  void botonCrear(View v){
-        mensaje = new Mensaje(creaNombre.toString(),":",creaContra.toString());
+        mensaje = new Mensaje(creaNombre.getText().toString(),":",creaContra.getText().toString());
         new Tarea().execute(mensaje);
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
-
-    }
-
-    public void bPrueba(View v){
 
     }
 

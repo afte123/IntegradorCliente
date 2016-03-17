@@ -30,8 +30,7 @@ public class Comunicacion  extends Observable implements Runnable{
     byte[] datos;
     byte[] buzon;
     DatagramPacket pEnviar, pRecibir;
-    private boolean indentificado;
-    private int identificador;
+
     private Comunicacion(){
 
         try {
@@ -127,7 +126,7 @@ public class Comunicacion  extends Observable implements Runnable{
 public static Comunicacion getInstance(){
     if(singleton ==null){
         singleton = new Comunicacion();
-System.out.println("ENTRAAAAAAAAAAAAAAAAAAAAA EL SINGLETON");
+
     }
 
     return singleton;
