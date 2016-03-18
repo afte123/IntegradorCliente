@@ -3,13 +3,12 @@ import java.io.Serializable;
 
 
 public class Mensaje implements Serializable {
-	String nombre, contra, separar;
-
-
-	public Mensaje (String nombre,String separar, String contra){
-		this.separar=separar;
+	String nombre, contra, nickName, apellido;
+	public Mensaje (String nombre, String apellido,  String contra, String nickName){
 		this.nombre=nombre;
+		this.apellido=apellido;
 		this.contra=contra;
+		this.nickName=nickName;
 	}
 
 	public String getNombre(){
@@ -20,4 +19,11 @@ public class Mensaje implements Serializable {
 		return contra;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
+
+	public String getnickName() {
+		return nickName;
+	}
 }

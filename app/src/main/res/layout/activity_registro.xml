@@ -14,7 +14,7 @@
         android:id="@+id/CreaNombre"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="159dp"
+        android:layout_marginTop="50dp"
         android:hint="Nombre" />
 
     <EditText
@@ -28,22 +28,36 @@
         android:layout_marginTop="47dp"
         android:hint="Contraseña" />
 
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/CreaApellido"
+        android:layout_below="@+id/CreaContra"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:hint="Apellido" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/CreaNickname"
+        android:layout_below="@+id/CreaApellido"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:hint="Nickname" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear Cuenta"
         android:id="@+id/crear"
-        android:layout_marginTop="55dp"
-        android:layout_below="@+id/CreaContra"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/CreaApellido"
         android:onClick="botonCrear"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="prueba"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:onClick="bPrueba"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

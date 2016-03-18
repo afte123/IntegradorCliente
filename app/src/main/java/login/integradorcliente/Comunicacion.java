@@ -37,7 +37,9 @@ public class Comunicacion  extends Observable implements Runnable{
             // Initialize the DatagramSocket to receive commands
             socket = new DatagramSocket();
             Thread hilo = new Thread(this);
-            IPGrupo = InetAddress.getByName("10.0.2.2");
+            //IPGrupo = InetAddress.getByName("10.0.2.2");
+          //  IPGrupo = InetAddress.getByName("192.168.0.11");
+            IPGrupo = InetAddress.getByName("172.30.158.62");
             hilo.start();
 
 
@@ -56,23 +58,11 @@ public class Comunicacion  extends Observable implements Runnable{
     }
 
     public void run() {
-
         while (true) {
             try {
                 // Receive packets and process the information
-
-
-
-
                 socket.receive(packet);
                 command= new String(packet.getData(),0,packet.getLength());
-
-
-
-
-
-
-
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -104,34 +94,22 @@ public class Comunicacion  extends Observable implements Runnable{
         }
     }
 
-
-
-
-
-
     public Object deserializar(byte[] des) throws IOException,
             ClassNotFoundException {
         ByteArrayInputStream bais = new ByteArrayInputStream(des);
         ObjectInputStream is = new ObjectInputStream(bais);
         Object obj = (Object) is.readObject();
-
         is.close();
-
         return obj;
 
     }
-
-
-
 public static Comunicacion getInstance(){
     if(singleton ==null){
         singleton = new Comunicacion();
 
     }
-
     return singleton;
 }
-
     public void setJefe(Observer jefe){
         this.jefe=jefe;
     }

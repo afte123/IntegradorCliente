@@ -15,7 +15,7 @@ import java.util.Observer;
 import comun.Mensaje;
 
 public class Registro extends AppCompatActivity implements Observer{
-EditText creaNombre, creaContra;
+EditText creaNombre, creaContra, creaApellido, creaNickname;
     Mensaje mensaje;
     Comunicacion com;
     @Override
@@ -24,21 +24,20 @@ EditText creaNombre, creaContra;
         setContentView(R.layout.activity_registro);
         creaNombre = (EditText) findViewById(R.id.CreaNombre);
         creaContra = (EditText) findViewById(R.id.CreaContra);
+        creaApellido = (EditText) findViewById(R.id.CreaApellido);
+        creaNickname = (EditText) findViewById(R.id.CreaNickname);
         com= Comunicacion.getInstance();
         com.getInstance().setJefe(this);
-
-
     }
 
 
 
 
     public  void botonCrear(View v){
-        mensaje = new Mensaje(creaNombre.getText().toString(),":",creaContra.getText().toString());
+        mensaje = new Mensaje(creaNombre.getText().toString(), creaApellido.getText().toString(),creaContra.getText().toString(), creaNickname.getText().toString());
         new Tarea().execute(mensaje);
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
-
     }
 
     @Override
@@ -51,12 +50,10 @@ EditText creaNombre, creaContra;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
