@@ -1,7 +1,7 @@
 package comun;
 import java.io.Serializable;
 
-
+//:v
 public class Mensaje implements Serializable {
 	String nombre, contra, nickName, apellido;
 	public Mensaje (String nombre, String apellido,  String contra, String nickName){
