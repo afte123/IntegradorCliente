@@ -3,28 +3,34 @@ package login.integradorcliente;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Observable;
 import java.util.Observer;
 
+
+import comun.Mensaje;
+
+
 public class Login extends AppCompatActivity implements Observer {
-EditText nombre, contra;
+EditText nickName, contra;
+    Mensaje mensaje;
+    Comunicacion com;
+
+    private String mostrar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        nombre=(EditText)findViewById(R.id.nombre);
+        nickName =(EditText)findViewById(R.id.nickName);
         contra = (EditText)findViewById(R.id.contrasena);
-
-        Comunicacion.getInstance().setJefe(this);
-
+        com= Comunicacion.getInstance();
+        com.getInstance().setJefe(this);
     }
 
 
@@ -33,18 +39,31 @@ EditText nombre, contra;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
-
-
-
     }
 
     public void bLogin(View v){
-
+        mensaje = new Mensaje(1, nickName.getText().toString(), contra.getText().toString());
+        new Tarea().execute(mensaje);
+        if(com.isConectado() == true){
+            Intent intent = new Intent(this, Producto.class);
+            startActivity(intent);
+        }
     }
 
     public void bRegistro(View v){
         Intent intent = new Intent(this, Registro.class);
-      startActivity(intent);
+        startActivity(intent);
+    }
+
+
+    private void mostrarMensaje(String mostrarMs) {
+        mostrar = mostrarMs;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), mostrar, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

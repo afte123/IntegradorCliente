@@ -1,7 +1,5 @@
 package login.integradorcliente;
 
-import android.util.Log;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,7 +27,8 @@ public class Comunicacion  extends Observable implements Runnable{
     InetAddress IPGrupo;
     byte[] datos;
     byte[] buzon;
-    DatagramPacket pEnviar, pRecibir;
+    DatagramPacket packete, pRecibir;
+    boolean conectado = false;
 
     private Comunicacion(){
 
@@ -37,12 +36,10 @@ public class Comunicacion  extends Observable implements Runnable{
             // Initialize the DatagramSocket to receive commands
             socket = new DatagramSocket();
             Thread hilo = new Thread(this);
-            //IPGrupo = InetAddress.getByName("10.0.2.2");
+            IPGrupo = InetAddress.getByName("10.0.2.2");
           //  IPGrupo = InetAddress.getByName("192.168.0.11");
-            IPGrupo = InetAddress.getByName("172.30.158.62");
+           // IPGrupo = InetAddress.getByName("172.30.158.62");
             hilo.start();
-
-
             // Create the buffer and the receiving packet
             byte[] buffer = new byte[64];
             packet = new DatagramPacket(buffer, buffer.length);
@@ -63,6 +60,8 @@ public class Comunicacion  extends Observable implements Runnable{
                 // Receive packets and process the information
                 socket.receive(packet);
                 command= new String(packet.getData(),0,packet.getLength());
+                evaluar(command);
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -81,18 +80,25 @@ public class Comunicacion  extends Observable implements Runnable{
 
     }
 
+    public void evaluar(String command){
+        if(command == "Bienvenido"){
+            conectado = true;
+        }
+    }
+
 
     public void enviar(Object obj) {
 
         try {
             datos = serializar(obj);
-            pEnviar = new DatagramPacket(datos, datos.length, IPGrupo, PORT);
-            socket.send(pEnviar);
+            packete = new DatagramPacket(datos, datos.length, IPGrupo, PORT);
+            socket.send(packete);
         } catch (IOException e) {
             // TODO: handle exception
             e.printStackTrace();
         }
     }
+
 
     public Object deserializar(byte[] des) throws IOException,
             ClassNotFoundException {
@@ -103,15 +109,19 @@ public class Comunicacion  extends Observable implements Runnable{
         return obj;
 
     }
-public static Comunicacion getInstance(){
+     public static Comunicacion getInstance(){
     if(singleton ==null){
         singleton = new Comunicacion();
-
     }
+
     return singleton;
 }
     public void setJefe(Observer jefe){
         this.jefe=jefe;
+    }
+
+    public boolean isConectado(){
+        return conectado;
     }
 
 }

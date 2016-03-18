@@ -14,29 +14,27 @@ import java.util.Observer;
 
 import comun.Mensaje;
 
-public class Registro extends AppCompatActivity implements Observer{
-EditText creaNombre, creaContra, creaApellido, creaNickname;
+public class Producto extends AppCompatActivity implements Observer{
+
     Mensaje mensaje;
     Comunicacion com;
-    int registrar = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
-        creaNombre = (EditText) findViewById(R.id.CreaNombre);
-        creaApellido = (EditText) findViewById(R.id.CreaApellido);
-        creaContra = (EditText) findViewById(R.id.CreaContra);
-        creaNickname = (EditText) findViewById(R.id.CreaNickname);
+        setContentView(R.layout.activity_producto);
         com= Comunicacion.getInstance();
         com.getInstance().setJefe(this);
     }
 
 
+    public  void bFrutas(View v){
+        //new Tarea().execute(mensaje);
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 
-
-    public  void botonCrear(View v){
-        mensaje = new Mensaje(registrar, creaNombre.getText().toString(), creaApellido.getText().toString(),creaContra.getText().toString(), creaNickname.getText().toString());
-        new Tarea().execute(mensaje);
+    public  void bVerduras(View v){
+        //new Tarea().execute(mensaje);
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
@@ -44,7 +42,7 @@ EditText creaNombre, creaContra, creaApellido, creaNickname;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_registro, menu);
+        getMenuInflater().inflate(R.menu.menu_producto, menu);
         return true;
     }
 
