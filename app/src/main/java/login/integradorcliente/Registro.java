@@ -18,7 +18,7 @@ public class Registro extends AppCompatActivity implements Observer{
 EditText creaNombre, creaContra, creaApellido, creaNickname;
     Mensaje mensaje;
     Comunicacion com;
-    int registrar = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +31,8 @@ EditText creaNombre, creaContra, creaApellido, creaNickname;
         com.getInstance().setJefe(this);
     }
 
-
-
-
     public  void botonCrear(View v){
-        mensaje = new Mensaje(registrar, creaNombre.getText().toString(), creaApellido.getText().toString(),creaContra.getText().toString(), creaNickname.getText().toString());
+        mensaje = new Mensaje("Registro", creaNombre.getText().toString(), creaApellido.getText().toString(),creaContra.getText().toString(), creaNickname.getText().toString());
         new Tarea().execute(mensaje);
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);

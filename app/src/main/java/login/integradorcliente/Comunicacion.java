@@ -36,8 +36,8 @@ public class Comunicacion  extends Observable implements Runnable{
             // Initialize the DatagramSocket to receive commands
             socket = new DatagramSocket();
             Thread hilo = new Thread(this);
-            IPGrupo = InetAddress.getByName("10.0.2.2");
-          //  IPGrupo = InetAddress.getByName("192.168.0.11");
+           // IPGrupo = InetAddress.getByName("10.0.2.2");
+            IPGrupo = InetAddress.getByName("192.168.0.11");
            // IPGrupo = InetAddress.getByName("172.30.158.62");
             hilo.start();
             // Create the buffer and the receiving packet

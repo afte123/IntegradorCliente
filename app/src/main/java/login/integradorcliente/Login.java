@@ -42,7 +42,7 @@ EditText nickName, contra;
     }
 
     public void bLogin(View v){
-        mensaje = new Mensaje(1, nickName.getText().toString(), contra.getText().toString());
+        mensaje = new Mensaje("Login", nickName.getText().toString(), contra.getText().toString());
         new Tarea().execute(mensaje);
         if(com.isConectado() == true){
             Intent intent = new Intent(this, Producto.class);
